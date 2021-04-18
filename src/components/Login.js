@@ -13,6 +13,8 @@ function Login() {
         if (!res.data.success) {
           setUserError(res.data.err);
           console.log(res.data.err);
+        } else {
+          console.log(res.data);
         }
       }
     } catch (error) {
@@ -53,8 +55,9 @@ function Login() {
                       setUser({ ...user, password: e.target.value })
                     }
                   />
-                  {userError.password &
-                  <div className="text-danger">{userError.password}</div>}
+                  {userError.password && (
+                    <div className="text-danger">{userError.password}</div>
+                  )}
                 </div>
                 <div className="container text-center">
                   <button
