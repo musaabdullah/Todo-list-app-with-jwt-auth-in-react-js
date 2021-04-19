@@ -29,6 +29,11 @@ const users = (state = initialState, action) => {
         userError: action.payload,
       };
       return state;
+    case "CHECK_USER":
+      state = {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }

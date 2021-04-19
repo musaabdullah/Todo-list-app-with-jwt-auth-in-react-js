@@ -1,9 +1,16 @@
 import "./App.css";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Home from "./components/Home";
+import { useDispatch } from "react-redux";
+import { checkAuth } from "./redux/actions/user";
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
   return (
     <>
       <Router>

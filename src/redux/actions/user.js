@@ -27,3 +27,13 @@ export const handleRegister = (user) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const handleCheckAuth = () => async (dispatch) => {
+  try {
+    const res = await api.handleCheckAuth();
+    console.log(res.data);
+    dispatch({ type: "CHECK_USER", payload: res.data.user });
+  } catch (error) {
+    console.log(error);
+  }
+};
