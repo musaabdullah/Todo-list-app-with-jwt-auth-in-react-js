@@ -1,31 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
-
+import { handleRegister } from "../redux/actions/user";
+import { useDispatch, useSelector } from "react-redux";
 function Register() {
   const [user, setUser] = useState({ username: "", email: "", password: "" });
-  const [userError, setUserError] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const handleRegister = async (e) => {
+
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.user);
+  console.log(state);
+  const submitRegister = (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:4000/register", user);
-      if (res.status === 200) {
-        console.log(res.data);
-        if (!res.data.success) {
-          setUserError(res.data.err);
-          console.log(userError);
-        }
-      } else {
-        throw Error("Error occer");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+    dispatch(handleRegister(user));
   };
+
   return (
     <div className="container">
       <div className="row justify-content-center mt-5">
@@ -46,8 +33,10 @@ function Register() {
                       setUser({ ...user, username: e.target.value })
                     }
                   />
-                  {userError.username && (
-                    <div className="text-danger">{userError.username}</div>
+                  {state.userError.username && (
+                    <div className="text-danger">
+                      {state.userError.username}
+                    </div>
                   )}
                 </div>
                 <div className="form-group m-2">
@@ -60,8 +49,8 @@ function Register() {
                       setUser({ ...user, email: e.target.value })
                     }
                   />
-                  {userError.email && (
-                    <div className="text-danger">{userError.email}</div>
+                  {state.userError.email && (
+                    <div className="text-danger">{state.userError.email}</div>
                   )}
                 </div>
                 <div className="form-group m-2">
@@ -74,15 +63,17 @@ function Register() {
                       setUser({ ...user, password: e.target.value })
                     }
                   />
-                  {userError.password && (
-                    <div className="text-danger">{userError.password}</div>
+                  {state.userError.password && (
+                    <div className="text-danger">
+                      {state.userError.password}
+                    </div>
                   )}
                 </div>
                 <div className="container text-center">
                   <button
                     className="btn btn-primary "
                     style={{ marginRight: 5 }}
-                    onClick={handleRegister}
+                    onClick={submitRegister}
                   >
                     Register
                   </button>

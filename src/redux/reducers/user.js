@@ -1,20 +1,32 @@
 const initialState = {
   user: {},
-  isLoggedIn: false,
+  userError: {},
 };
 
 const users = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case "LOGIN_SCCESS":
       state = {
         ...state,
         user: action.payload,
       };
       return state;
-    case "LOGIN_SCCESS":
+    case "LOGIN_FAILED":
       state = {
         ...state,
-        isLoggedIn: state.user ? true : false,
+        userError: action.payload,
+      };
+      return state;
+    case "REGISTER_SUCCESS":
+      state = {
+        ...state,
+        user: action.payload,
+      };
+      return state;
+    case "REGISTER_FAILED":
+      state = {
+        ...state,
+        userError: action.payload,
       };
       return state;
     default:

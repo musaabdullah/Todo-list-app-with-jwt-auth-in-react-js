@@ -1,13 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { handleLogin } from "../redux/actions/user";
+import { useDispatch, useSelector } from "react-redux";
 function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
   // const [userError, setUserError] = useState({ email: "", password: "" });
-
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.user);
+  console.log(state);
   const submitLogin = (e) => {
     e.preventDefault();
-    handleLogin(user);
+    dispatch(handleLogin(user));
   };
   return (
     <div className="container">
@@ -29,9 +32,9 @@ function Login() {
                       setUser({ ...user, email: e.target.value })
                     }
                   />
-                  {/* {userError.email && (
-                    <div className="text-danger">{userError.email}</div>
-                  )} */}
+                  {state.userError.email && (
+                    <div className="text-danger">{state.userError.email}</div>
+                  )}
                 </div>
                 <div className="form-group m-2">
                   <input
@@ -43,9 +46,11 @@ function Login() {
                       setUser({ ...user, password: e.target.value })
                     }
                   />
-                  {/* {userError.password && (
-                    <div className="text-danger">{userError.password}</div>
-                  )} */}
+                  {state.userError.password && (
+                    <div className="text-danger">
+                      {state.userError.password}
+                    </div>
+                  )}
                 </div>
                 <div className="container text-center">
                   <button
