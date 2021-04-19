@@ -1,25 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
-
+import { handleLogin } from "../redux/actions/user";
 function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
-  const [userError, setUserError] = useState({ email: "", password: "" });
-  const handleLogin = async (e) => {
+  // const [userError, setUserError] = useState({ email: "", password: "" });
+
+  const submitLogin = (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:4000/login", user);
-      if (res.status === 200) {
-        if (!res.data.success) {
-          setUserError(res.data.err);
-          console.log(res.data.err);
-        } else {
-          console.log(res.data);
-        }
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
+    handleLogin(user);
   };
   return (
     <div className="container">
@@ -29,7 +17,7 @@ function Login() {
             <div className="card-header bg-success text-white">
               <h3>Login Form</h3>
             </div>
-            <div className="card-body">
+            <div className="card-body shadow">
               <form>
                 <div className="form-group m-2">
                   <input
@@ -41,9 +29,9 @@ function Login() {
                       setUser({ ...user, email: e.target.value })
                     }
                   />
-                  {userError.email && (
+                  {/* {userError.email && (
                     <div className="text-danger">{userError.email}</div>
-                  )}
+                  )} */}
                 </div>
                 <div className="form-group m-2">
                   <input
@@ -55,15 +43,15 @@ function Login() {
                       setUser({ ...user, password: e.target.value })
                     }
                   />
-                  {userError.password && (
+                  {/* {userError.password && (
                     <div className="text-danger">{userError.password}</div>
-                  )}
+                  )} */}
                 </div>
                 <div className="container text-center">
                   <button
                     className="btn btn-primary "
                     style={{ marginRight: 5 }}
-                    onClick={handleLogin}
+                    onClick={submitLogin}
                   >
                     Login
                   </button>
