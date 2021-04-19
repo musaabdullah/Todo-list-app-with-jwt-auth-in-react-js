@@ -2,20 +2,25 @@ import React from "react";
 import { useState } from "react";
 import { handleLogin } from "../redux/actions/user";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
   // const [userError, setUserError] = useState({ email: "", password: "" });
+  const history = useHistory();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   console.log(state);
   const submitLogin = (e) => {
     e.preventDefault();
     dispatch(handleLogin(user));
+    if (!user.email || !user.password) return;
+    history.push("/");
   };
   return (
     <div className="container">
       <div className="row justify-content-center mt-5">
-        <div className="col-md-4">
+        <div className="col-md-8 col-lg-4 col-sm-12">
           <div className="card">
             <div className="card-header bg-success text-white">
               <h3>Login Form</h3>
@@ -61,6 +66,10 @@ function Login() {
                     Login
                   </button>
                   <button className="btn btn-danger">Cancel</button>
+                </div>
+                <div className="mt-3">
+                  if you don't have an account please register{" "}
+                  <Link to="/register">here</Link>
                 </div>
               </form>
             </div>

@@ -3,7 +3,6 @@ import * as api from "../api/user";
 export const handleLogin = (user) => async (dispatch) => {
   try {
     const res = await api.handleLogin(user);
-    console.log(res.data);
     if (res.data.success) {
       dispatch({ type: "LOGIN_SCCESS", payload: res.data.user });
     } else {
@@ -17,7 +16,6 @@ export const handleLogin = (user) => async (dispatch) => {
 export const handleRegister = (user) => async (dispatch) => {
   try {
     const res = await api.handleRegister(user);
-    console.log(res.data);
     if (res.data.success) {
       dispatch({ type: "REGISTER_SUCCESS", payload: res.data.user });
     } else {
@@ -31,8 +29,16 @@ export const handleRegister = (user) => async (dispatch) => {
 export const handleCheckAuth = () => async (dispatch) => {
   try {
     const res = await api.handleCheckAuth();
-    console.log(res.data);
     dispatch({ type: "CHECK_USER", payload: res.data.user });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const handleLogout = () => async (dispatch) => {
+  try {
+    const res = await api.handleLogout();
+    dispatch({ type: "LOGOUT", payload: "" });
   } catch (error) {
     console.log(error);
   }

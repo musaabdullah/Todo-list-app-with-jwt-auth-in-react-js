@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { handleRegister } from "../redux/actions/user";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 function Register() {
   const [user, setUser] = useState({ username: "", email: "", password: "" });
 
@@ -78,6 +79,10 @@ function Register() {
                     Register
                   </button>
                   <button className="btn btn-danger">Cancel</button>
+                </div>
+                <div className="mt-3">
+                  if you already have account click ?
+                  <Link to="/login">here</Link>
                 </div>
               </form>
             </div>
