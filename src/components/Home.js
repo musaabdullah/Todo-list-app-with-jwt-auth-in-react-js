@@ -15,17 +15,26 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <div className="row">
-        <div className="col-md-6">
-          <div className="list-group"></div>
-          {state.todos &&
-            state.todos.map((todo) => {
-              return (
-                <div className="list-group">
-                  <div className="list-group-item">{todo.todo}</div>
-                </div>
-              );
-            })}
+      <div className="container">
+        <div className="row justify-content-center mt-5">
+          <div className="col-md-4">
+            <h3 className="my-4  d-flex justify-content-between">
+              <span>Todo List</span>
+              <button className="btn btn-primary">Add Todo</button>
+            </h3>
+            <div className="list-group"></div>
+            {state.todos &&
+              state.todos.map((todo) => {
+                return (
+                  <div className="list-group p-0">
+                    <div className="list-group-item p-2 my-1 d-flex align-items-center justify-content-between">
+                      {todo.todo}
+                      <button className="btn btn-danger ">Remove</button>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
     </div>
