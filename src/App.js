@@ -9,7 +9,7 @@ import { handleCheckAuth } from "./redux/actions/user";
 function App() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  console.log(state.user.user);
+  // console.log(state.user.user);
   const isLoggedIn = state.user.user ? true : false;
 
   useEffect(() => {
