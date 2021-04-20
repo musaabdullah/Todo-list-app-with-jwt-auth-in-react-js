@@ -6,10 +6,12 @@ function Navbar() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
   const history = useHistory();
+
   const submitLogout = () => {
     dispatch(handleLogout());
     history.push("/login");
   };
+
   return (
     <div className="nav bg-dark d-flex">
       <Link to="/" className="nav-item nav-link text-white">

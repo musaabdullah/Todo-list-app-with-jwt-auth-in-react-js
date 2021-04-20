@@ -1,17 +1,33 @@
 import React, { useEffect } from "react";
 import Navbar from "./Navbar";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getTodo } from "../redux/actions/todo";
+
 function Home() {
-  const handleData = async () => {
-    const { data } = await axios.get("http://localhost:4000/posts");
-    console.log(data);
-  };
+  const state = useSelector((state) => state.todo);
+  const dispatch = useDispatch();
   useEffect(() => {
-    handleData();
+    dispatch(getTodo());
   }, []);
+  console.log(state.todos);
+
   return (
     <div>
       <Navbar />
+      <div className="row">
+        <div className="col-md-6">
+          <div className="list-group"></div>
+          {state.todos &&
+            state.todos.map((todo) => {
+              return (
+                <div className="list-group">
+                  <div className="list-group-item">{todo.todo}</div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
     </div>
   );
 }

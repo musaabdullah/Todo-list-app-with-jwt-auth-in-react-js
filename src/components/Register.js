@@ -8,7 +8,6 @@ function Register() {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
-  console.log(state);
   const submitRegister = (e) => {
     e.preventDefault();
     dispatch(handleRegister(user));
