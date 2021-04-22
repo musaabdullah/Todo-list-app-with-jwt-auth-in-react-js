@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import { useDispatch, useSelector } from "react-redux";
 import { handleCheckAuth } from "./redux/actions/user";
+import { history } from "./helpers/history";
 function App() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -17,7 +18,7 @@ function App() {
   }, [dispatch]);
   return (
     <>
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route exact path={["/", "/Home"]}>
             {isLoggedIn ? <Home /> : <Login />}

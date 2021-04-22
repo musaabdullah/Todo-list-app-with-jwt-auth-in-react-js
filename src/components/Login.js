@@ -10,7 +10,7 @@ function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
   const state = useSelector((state) => state.user);
-  console.log(state);
+  // console.log(state);
   const submitLogin = (e) => {
     e.preventDefault();
     dispatch(handleLogin(user));

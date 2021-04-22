@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { handleLogout } from "../redux/actions/user";
 function Navbar() {
@@ -9,32 +9,37 @@ function Navbar() {
 
   const submitLogout = () => {
     dispatch(handleLogout());
+    // <Redirect to={{ pathname: "/login" }} />;
     history.push("/login");
+    window.location.reload();
   };
 
   return (
-    <div className="nav bg-dark d-flex">
-      <Link to="/" className="nav-item nav-link text-white">
+    <div className="nav bg-dark d-flex ">
+      <Link to="/" className="nav-item nav-link text-white flex-grow-1">
         Home
       </Link>
       {state.user ? (
-        <>
+        <div className="d-flex ">
           <Link to="/register" className="nav-item nav-link text-white">
             {state.user.username}
           </Link>
-          <Link onClick={submitLogout} className="nav-item nav-link text-white">
+          <button
+            onClick={() => submitLogout()}
+            className="nav-item nav-link text-white bg-dark btn"
+          >
             Logout
-          </Link>
-        </>
+          </button>
+        </div>
       ) : (
-        <>
+        <div className="d-flex">
           <Link to="/register" className="nav-item nav-link text-white">
             Register
           </Link>
           <Link to="/login" className="nav-item nav-link text-white">
             Login
           </Link>
-        </>
+        </div>
       )}
       )
     </div>
