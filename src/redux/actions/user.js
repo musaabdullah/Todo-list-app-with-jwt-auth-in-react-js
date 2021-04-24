@@ -38,6 +38,7 @@ export const handleCheckAuth = () => async (dispatch) => {
 export const handleLogout = () => async (dispatch) => {
   try {
     const res = await api.handleLogout();
+    console.log(res);
     dispatch({ type: "LOGOUT", payload: "" });
   } catch (error) {
     console.log(error);

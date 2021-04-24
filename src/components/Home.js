@@ -17,7 +17,7 @@ function Home() {
   console.log(state.todo.currentTodo);
   useEffect(() => {
     dispatch(getTodo(state.user.user._id));
-  }, [state.user.user._id]);
+  }, [state.user.user._id, dispatch]);
   //   console.log(state.todos);
   const handleRemove = (id) => {
     dispatch(removeTodo(id));

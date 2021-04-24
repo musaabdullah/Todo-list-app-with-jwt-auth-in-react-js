@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { handleLogout } from "../redux/actions/user";
 function Navbar() {

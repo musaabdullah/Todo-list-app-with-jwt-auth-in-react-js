@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../redux/actions/todo";
 function AddTodo() {
   const [todo, setTodo] = useState();
-  const [completed, setCompleted] = useState(false);
+  let completed = false;
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
