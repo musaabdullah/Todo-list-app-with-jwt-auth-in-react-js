@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:4000/";
+const url = "https://todonodeapiwithreactjs.herokuapp.com/";
 
 export const handleLogin = (user) => axios.post(url + "login", user);
 export const handleRegister = (user) => axios.post(url + "register", user);
